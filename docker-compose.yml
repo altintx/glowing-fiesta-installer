@@ -1,7 +1,7 @@
 version: "3.9"
 services: 
   urban-memory:
-    image: node:16.3.0-alpine3.13
+    image: node:16
     ports:
       - "3000:3000"
     volumes:
@@ -13,7 +13,7 @@ services:
     depends_on:
       - redis
   glowing-fiesta: 
-    image: node:16.3.0-alpine3.13
+    image: node:16
     ports:
       - "4200:4200"
     volumes:
