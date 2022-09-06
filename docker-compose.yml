@@ -1,0 +1,31 @@
+version: "3.9"
+services: 
+  urban-memory:
+    image: node:16.3.0-alpine3.13
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind 
+        source: ./urban-memory
+        target: /app
+    working_dir: /app
+    command: yarn serve
+    depends_on:
+      - redis
+  glowing-fiesta: 
+    image: node:16.3.0-alpine3.13
+    ports:
+      - "4200:4200"
+    volumes:
+      - type: bind 
+        source: ./glowing-fiesta
+        target: /app
+    working_dir: /app
+    command: yarn start
+    depends_on:
+      - redis 
+      - urban-memory
+  redis: 
+    image: redis
+    ports:
+      - "6379:6379"
