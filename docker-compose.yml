@@ -1,9 +1,10 @@
 version: "3.9"
 services: 
   urban-memory:
-    image: node:16
+    image: node:${NODE_VERSION:-16}
     ports:
       - "3000:3000"
+      - "9229:9229"
     volumes:
       - type: bind 
         source: ./urban-memory
@@ -12,8 +13,10 @@ services:
     command: yarn serve
     depends_on:
       - redis
+    environment:
+      - REDIS_URL=redis://redis:6379
   glowing-fiesta: 
-    image: node:16
+    image: node:${NODE_VERSION:-16}
     ports:
       - "4200:4200"
     volumes:
@@ -25,6 +28,9 @@ services:
     depends_on:
       - redis 
       - urban-memory
+    environment:
+      - API_URL=http://urban-memory:3000
+      - REACT_APP_PROXY_HOST=htttp://host.docker.internal:3000
   redis: 
     image: redis
     ports:
