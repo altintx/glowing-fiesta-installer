@@ -29,7 +29,6 @@ services:
       - redis 
       - urban-memory
     environment:
-      - API_URL=http://urban-memory:3000
       - REACT_APP_PROXY_HOST=htttp://host.docker.internal:3000
   redis: 
     image: redis
