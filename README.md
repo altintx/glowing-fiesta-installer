@@ -6,3 +6,6 @@ setup.sh
 * Clones `urban-memory` and `glowing-fiesta` into `invasion`
 * yarn install each
 * Drops docker-compose.yml into invasion folder
+
+To use, ensure you have `docker` and `git` installed then 
+`cd` into this folder and run `./setup.sh`. 
